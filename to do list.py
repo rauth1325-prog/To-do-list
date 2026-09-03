@@ -48,3 +48,5 @@ while True:
     else:
         print("Thanks to visit ")
         break    
+
+print("Stay Consistent!!!")
