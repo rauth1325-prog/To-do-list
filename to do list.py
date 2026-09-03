@@ -1,4 +1,35 @@
-Tasks = []
+import json
+
+# ---------------- LOAD MEMORY ----------------
+
+try:
+    with open("data.json", "r") as file:
+        data = json.load(file)
+
+    Tasks = data["Tasks"]
+    Bithday = data["Bithday"]
+    Fesiival = data["Fesiival"]
+
+except FileNotFoundError:
+    Tasks = []
+    Bithday = []
+    Fesiival = []
+
+
+# ---------------- SAVE MEMORY ----------------
+
+def save_data():
+    data = {
+        "Tasks": Tasks,
+        "Bithday": Bithday,
+        "Fesiival": Fesiival
+    }
+
+    with open("data.json", "w") as file:
+        json.dump(data, file, indent=4)
+
+
+# ---------------- TASKS ----------------
 
 while True:
 
@@ -8,6 +39,9 @@ while True:
 
         task = input("Enter the task you want to add: ")
         Tasks.append(task)
+
+        save_data()
+        print("Task saved!")
 
     elif a.lower() == "see tasks":
 
@@ -19,7 +53,9 @@ while True:
 
         if task in Tasks:
             Tasks.remove(task)
+            save_data()
             print("Task deleted!")
+
         else:
             print("Task is not present.")
 
@@ -27,26 +63,44 @@ while True:
 
         print("Goodbye!")
         break
-Bithday = []
+
+
+# ---------------- BIRTHDAYS ----------------
+
 while True:
-    a = input("Do you want to save anyones Birthday date ")
+
+    a = input("Do you want to save anyone's Birthday date? ")
+
     if a.lower() == "yes":
-        name = input("Write the name of person")
-        date = input("Write the Birth date of person")
-        Bithday.append([name,date])
+
+        name = input("Write the name of person: ")
+        date = input("Write the Birth date of person: ")
+
+        Bithday.append([name, date])
+        save_data()
+
     else:
-        print("ok thanks to visit us :) ")
+        print("Okay, thanks for visiting us :)")
         break
-    
-Fesiival = []
+
+
+# ---------------- FESTIVALS ----------------
+
 while True:
-    a= input("any festival you want to remember")
+
+    a = input("Any festival you want to remember? ")
+
     if a.lower() == "yes":
-        name  = input("Name of festival")
-        date = input("Date of festival")
-        Fesiival.append([name,date])
+
+        name = input("Name of festival: ")
+        date = input("Date of festival: ")
+
+        Fesiival.append([name, date])
+        save_data()
+
     else:
-        print("Thanks to visit ")
-        break    
+        print("Thanks for visiting")
+        break
+
 
 print("Stay Consistent!!!")
