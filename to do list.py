@@ -103,4 +103,4 @@ while True:
         break
 
 
-print("Stay Consistent!!!")
+print("Stay Happy!!!")
